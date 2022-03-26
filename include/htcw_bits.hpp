@@ -1,5 +1,30 @@
 #ifndef HTCW_BITS_HPP
 #define HTCW_BITS_HPP
+#if !defined(HTCW_LITTLE_ENDIAN) && !defined(HTCW_BIG_ENDIAN)
+#ifdef ARDUINO_ARCH_STM32
+    #define HTCW_LITTLE_ENDIAN
+#endif
+#if defined(ARDUINO_ARCH_SAMD) && defined(SEEED_GROVE_UI_WIRELESS)
+    #define HTCW_LITTLE_ENDIAN
+#endif
+#if defined(ARDUINO_ARCH_AVR)
+    #define HTCW_LITTLE_ENDIAN
+#endif
+#if defined(ARDUINO_ARCH_ESP8266)
+    #define HTCW_LITTLE_ENDIAN
+#endif
+#if defined(ARDUINO_ARCH_ESP32)
+    #define HTCW_LITTLE_ENDIAN
+#endif
+#endif
+#if !defined(HTCW_LITTLE_ENDIAN) && !defined(HTCW_BIG_ENDIAN)
+    #ifdef ESP_PLATFORM
+        #define HTCW_LITTLE_ENDIAN
+    #endif
+    #ifdef _WIN32_WINNT
+        #define HTCW_LITTLE_ENDIAN
+    #endif
+#endif
 #define PACKED __attribute__((__packed__))
 #define PACK // TODO: Add Microsoft pack pragmas here
 #define RESTORE_PACK

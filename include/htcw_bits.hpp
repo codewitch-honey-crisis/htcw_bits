@@ -28,9 +28,9 @@
         #define HTCW_LITTLE_ENDIAN
     #endif
 #endif
-#define PACKED __attribute__((__packed__))
-#define PACK // TODO: Add Microsoft pack pragmas here
-#define RESTORE_PACK
+#define HTCW_PACKED __attribute__((__HTCW_PACKED__))
+#define HTCW_PACK // TODO: Add Microsoft pack pragmas here
+#define HTCW_RESTORE_PACK
 #ifndef HTCW_MAX_WORD
 #define HTCW_MAX_WORD 64
 #endif

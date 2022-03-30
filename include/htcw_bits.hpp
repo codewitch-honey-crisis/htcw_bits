@@ -4,6 +4,9 @@
 #ifdef ARDUINO_ARCH_STM32
     #define HTCW_LITTLE_ENDIAN
 #endif
+#if defined(ARDUINO_ARDUINO_NANO33BLE) || defined(ARDUINO_ARCH_MBED_RP2040)|| defined(ARDUINO_ARCH_RP2040)
+    #define HTCW_LITTLE_ENDIAN
+#endif
 #if defined(ARDUINO_ARCH_SAMD) && defined(SEEED_GROVE_UI_WIRELESS)
     #define HTCW_LITTLE_ENDIAN
 #endif

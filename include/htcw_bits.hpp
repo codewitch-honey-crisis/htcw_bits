@@ -36,7 +36,9 @@
 #endif
 #include <stddef.h>
 #include <stdint.h>
+#include <math.h>
 #include <string.h>
+
 namespace bits {
     enum struct endian_mode {
         none = 0,
@@ -329,6 +331,29 @@ namespace bits {
 #endif
     template<typename T> using unsignedx = typename unsigned_helper<T>::type;
     
+    template<typename T> struct num_metrics {
+        constexpr static const unsignedx<T> bit_mask = unsignedx<T>(~unsignedx<T>(0));
+        constexpr static const bool is_signed = bool(T(-1) < T(0));
+        constexpr static const T max = is_signed?T(unsignedx<T>(unsignedx<T>(bit_mask<<1)>>1)):T(~T(0));
+        constexpr static const T min = is_signed?~max:T(0);
+        constexpr static const T zero = 0;
+    };
+
+    template<> struct num_metrics<float> {
+        constexpr static const float bit_mask = NAN;
+        constexpr static const bool is_signed = true;
+        constexpr static const float max = INFINITY;
+        constexpr static const float min = -INFINITY;
+        constexpr static const float zero = 0.0;
+    };
+    template<> struct num_metrics<double> {
+        constexpr static const double bit_mask = NAN;
+        constexpr static const bool is_signed = true;
+        constexpr static const double max = INFINITY;
+        constexpr static const double min = -INFINITY;
+        constexpr static const double zero = 0.0;
+    };
+
     template<size_t Width>
     struct mask {
         using int_type = uintx<get_word_size(Width)>;

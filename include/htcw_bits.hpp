@@ -11,19 +11,6 @@
 
 namespace bits {
 
-// could cause traps but necessary
-#ifndef NAN
-#ifdef __cplusplus
-#include <limits>
-#define NAN (std::numeric_limits<double>::quiet_NaN())
-#endif
-#endif
-#ifndef INFINITY
-#ifdef __cplusplus
-#include <limits>
-#define INFINITY (std::numeric_limits<double>::infinity())
-#endif
-#endif
     constexpr size_t get_word_size(size_t size) {
 #if HTCW_MAX_WORD >= 64
         if(size>64) return 0; 
@@ -142,7 +129,7 @@ namespace bits {
         constexpr static const T min = is_signed?~max:T(0);
         constexpr static const T zero = 0;
     };
-
+#if defined (NAN) && defined(INFINITIY)
     template<> struct num_metrics<float> {
         constexpr static const float bit_mask = NAN;
         constexpr static const bool is_signed = true;
@@ -157,7 +144,7 @@ namespace bits {
         constexpr static const double min = -INFINITY;
         constexpr static const double zero = 0.0;
     };
-
+#endif
     template<size_t Width>
     struct mask {
         using int_type = uintx<get_word_size(Width)>;

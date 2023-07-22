@@ -12,10 +12,6 @@ zephyr_interface_library_named(HTCW_BITS)
 
 zephyr_library()
 
-zephyr_library_sources(
-    #none here
-)
-
 #zephyr_library_sources_ifdef(CONFIG_PARAM_DEF, file.cpp)
 zephyr_library_link_libraries(HTCW_BITS)
 target_link_libraries(HTCW_BITS INTERFACE zephyr_interface)

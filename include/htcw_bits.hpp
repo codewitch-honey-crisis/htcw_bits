@@ -11,6 +11,13 @@
 
 namespace bits {
 
+// could cause traps but necessary
+#ifndef NAN
+#define NAN (float)(0.0f/0.0f);
+#endif
+#ifndef INFINITY
+#define INFINITY (float)(1.0f/0.0f);
+#endif
     constexpr size_t get_word_size(size_t size) {
 #if HTCW_MAX_WORD >= 64
         if(size>64) return 0; 

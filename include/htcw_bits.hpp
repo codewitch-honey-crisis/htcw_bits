@@ -13,10 +13,16 @@ namespace bits {
 
 // could cause traps but necessary
 #ifndef NAN
-#define NAN ((float)(0.0f/0.0f))
+#ifndef __cplusplus
+#include <limits>
+#define NAN (std::numeric_limits<double>::quiet_NaN())
+#endif
 #endif
 #ifndef INFINITY
-#define INFINITY ((float)(1e300f*1e300f))
+#ifndef __cplusplus
+#include <limits>
+#define INFINITY (std::numeric_limits<double>::infinity())
+#endif
 #endif
     constexpr size_t get_word_size(size_t size) {
 #if HTCW_MAX_WORD >= 64

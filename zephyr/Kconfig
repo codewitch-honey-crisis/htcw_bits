@@ -2,4 +2,4 @@ menu "htcw_bits configuration"
   config HTCW_BITS
     bool "Enable HTCW_BITS"
     default n
-end menu
+endmenu

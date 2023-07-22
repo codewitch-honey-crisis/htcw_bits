@@ -4,13 +4,13 @@
 
 if(CONFIG_HTCW_BITS)
 
-set(ZEPHYR_CURRENT_LIBRARY htcw_bits)
+zephyr_library()
+
 #include_directories(${ZEPHYR_BASE}/lib/???/htcw_bits)
 zephyr_include_directories(../include/)
 zephyr_library_include_directories(../include/)
 zephyr_interface_library_named(HTCW_BITS)
 
-zephyr_library()
 
 #zephyr_library_sources_ifdef(CONFIG_PARAM_DEF, file.cpp)
 zephyr_library_link_libraries(HTCW_BITS)

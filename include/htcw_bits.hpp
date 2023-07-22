@@ -16,7 +16,7 @@ namespace bits {
 #define NAN ((float)(0.0f/0.0f))
 #endif
 #ifndef INFINITY
-#define INFINITY ((float)(1.0f/0.0f))
+#define INFINITY ((float)(1e300f*1e300f))
 #endif
     constexpr size_t get_word_size(size_t size) {
 #if HTCW_MAX_WORD >= 64

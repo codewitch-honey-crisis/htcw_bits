@@ -7,7 +7,7 @@ if(CONFIG_HTCW_BITS)
 set(ZEPHYR_CURRENT_LIBRARY htcw_bits)
 #include_directories(${ZEPHYR_BASE}/lib/???/htcw_bits)
 zephyr_include_directories(../include/)
-
+zephyr_library_include_directories(../include/)
 zephyr_interface_library_named(HTCW_BITS)
 
 zephyr_library()

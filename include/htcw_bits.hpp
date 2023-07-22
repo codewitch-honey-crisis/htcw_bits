@@ -13,13 +13,13 @@ namespace bits {
 
 // could cause traps but necessary
 #ifndef NAN
-#ifndef __cplusplus
+#ifdef __cplusplus
 #include <limits>
 #define NAN (std::numeric_limits<double>::quiet_NaN())
 #endif
 #endif
 #ifndef INFINITY
-#ifndef __cplusplus
+#ifdef __cplusplus
 #include <limits>
 #define INFINITY (std::numeric_limits<double>::infinity())
 #endif

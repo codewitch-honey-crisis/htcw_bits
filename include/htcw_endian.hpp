@@ -54,13 +54,7 @@ constexpr static endian_mode endianness() {
 }
 // swaps byte order
 constexpr static inline uint16_t swap(uint16_t value) {
-#if defined(_MSC_VER) && !defined(_DEBUG)
-    // The DLL version of the runtime lacks these functions (bug!?), but in a
-    // release build they're replaced with BSWAP instructions anyway.
-    return _byteswap_ushort(value);
-#else
     return ((value & 0xFF00) >> 8) | ((value & 0x00FF) << 8);
-#endif
 }
 // swaps byte order
 constexpr static inline uint32_t swap(uint32_t value) {

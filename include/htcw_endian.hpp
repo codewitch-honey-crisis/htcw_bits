@@ -36,6 +36,9 @@
 #if !defined(HTCW_LITTLE_ENDIAN) && !defined(HTCW_BIG_ENDIAN) && defined(__arm__)
 #define HTCW_LITTLE_ENDIAN
 #endif
+#if !defined(HTCW_LITTLE_ENDIAN) && !defined(HTCW_BIG_ENDIAN) && defined(_M_X64)
+#define HTCW_LITTLE_ENDIAN
+#endif
 namespace bits {
 enum struct endian_mode {
     none = 0,

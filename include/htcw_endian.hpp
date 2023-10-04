@@ -70,8 +70,6 @@ namespace bits {
     {
  #if defined(__llvm__) || (defined(__GNUC__) && !defined(__ICC))
    return __builtin_bswap32(value);
- #elif defined(_MSC_VER) && !defined(_DEBUG)
-   return _byteswap_ulong(value);
  #else
         return ((value>>24)&0xff) | // move byte 3 to byte 0
                     ((value<<8)&0xff0000) | // move byte 1 to byte 2
@@ -84,10 +82,8 @@ namespace bits {
     constexpr static inline uint64_t swap(uint64_t value) {
 #if defined(__llvm__) || (defined(__GNUC__) && !defined(__ICC))
        return __builtin_bswap64(value);
- #elif defined(_MSC_VER) && !defined(_DEBUG)
-        return _byteswap_uint64(value);
  #else
-        return swap(uint32_t(value))<<32|swap(uint32_t(value>>32));
+        return swap(uint32_t(value<<32))|swap(uint32_t(value>>32));
 #endif
 #endif
     }

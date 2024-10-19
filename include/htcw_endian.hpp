@@ -49,10 +49,8 @@ enum struct endian_mode {
 constexpr static endian_mode endianness() {
 #ifdef HTCW_BIG_ENDIAN
     return endian_mode::big_endian;
-#elif defined(HTCW_LITTLE_ENDIAN)
+#else //if defined(HTCW_LITTLE_ENDIAN)
     return endian_mode::little_endian;
-#else
-    return endian_mode::none;
 #endif
 }
 // swaps byte order

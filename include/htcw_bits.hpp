@@ -175,7 +175,48 @@ struct signed_helper<uint64_t> {
 };
 #endif
 template <typename T>
+struct signed_helper_no_real {
+    using type = helpers::dummy_signed;
+};
+template <>
+struct signed_helper_no_real<int8_t> {
+    using type = int8_t;
+};
+template <>
+struct signed_helper_no_real<uint8_t> {
+    using type = int8_t;
+};
+template <>
+struct signed_helper_no_real<int16_t> {
+    using type = int16_t;
+};
+template <>
+struct signed_helper_no_real<uint16_t> {
+    using type = int16_t;
+};
+template <>
+struct signed_helper_no_real<int32_t> {
+    using type = int32_t;
+};
+template <>
+struct signed_helper_no_real<uint32_t> {
+    using type = int32_t;
+};
+#if HTCW_MAX_WORD >= 64
+template <>
+struct signed_helper_no_real<int64_t> {
+    using type = int64_t;
+};
+template <>
+struct signed_helper_no_real<uint64_t> {
+    using type = int64_t;
+};
+#endif
+
+template <typename T>
 using signedx = typename signed_helper<T>::type;
+template <typename T>
+using signedx_no_real = typename signed_helper_no_real<T>::type;
 
 template <typename T>
 struct unsigned_helper {

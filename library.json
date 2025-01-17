@@ -1,6 +1,6 @@
 {
     "name": "htcw_bits",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "description": "Provides advanced bit manipulation",
     "keywords": ["bits","binary","data"],
     "authors": {

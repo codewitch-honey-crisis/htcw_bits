@@ -264,7 +264,7 @@ template <typename T>
 struct num_metrics {
     constexpr static const unsignedx<T> bit_mask = unsignedx<T>(~unsignedx<T>(0));
     constexpr static const bool is_signed = bool(T(-1) < T(0));
-    constexpr static const T max = is_signed ? T(unsignedx<T>(unsignedx<T>(bit_mask << 1) >> 1)) : T(~T(0));
+    constexpr static const T max = is_signed ? T(unsignedx<T>((bit_mask << 1) >> 1)) : T(~T(0));
     constexpr static const T min = is_signed ? ~max : T(0);
     constexpr static const T zero = 0;
 };
@@ -291,13 +291,13 @@ struct mask {
     using int_type = uintx<get_word_size(Width)>;
 
    private:
-    constexpr static const int_type int_mask = ~int_type(0);
+    constexpr static const int_type int_mask = (int_type)~int_type(0);
 
    public:
-    constexpr static const int_type left = int_mask << ((sizeof(int_type) * 8 - Width) & int_mask);
-    constexpr static const int_type right = int_mask >> (sizeof(int_type) * 8 - Width);
-    constexpr static const int_type not_left = ~left;
-    constexpr static const int_type not_right = ~right;
+    constexpr static const uint_max left = int_mask << ((sizeof(int_type) * 8 - Width) & int_mask);
+    constexpr static const uint_max right = int_mask >> (sizeof(int_type) * 8 - Width);
+    constexpr static const uint_max not_left = ~left;
+    constexpr static const uint_max not_right = ~right;
 };
 
 constexpr inline static void set_bits(void* bits, size_t offset_bits, size_t size_bits, bool value) {
